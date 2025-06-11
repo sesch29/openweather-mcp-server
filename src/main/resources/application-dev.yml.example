@@ -1,0 +1,3 @@
+my:
+  openweathermap:
+    apikey: your-api-key-1234

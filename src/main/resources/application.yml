@@ -1,0 +1,18 @@
+logging:
+  level:
+    org:
+      springframework: WARN
+spring:
+  profiles:
+    active: dev
+  application:
+    name: weather-mcp-server
+  main:
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        enabled: true
+        stdio: true
+        name: mcp-weather-server
+
