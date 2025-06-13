@@ -1,0 +1,10 @@
+secret:
+  openweathermap:
+    apikey: your-api-key-1234
+
+spring:
+  security:
+    # Provide a default "user"
+    user:
+      name: user
+      password: password
