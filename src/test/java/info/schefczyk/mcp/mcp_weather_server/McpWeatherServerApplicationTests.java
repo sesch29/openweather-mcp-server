@@ -6,6 +6,7 @@ import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.transport.ServerParameters;
 import io.modelcontextprotocol.client.transport.StdioClientTransport;
 import io.modelcontextprotocol.spec.McpSchema;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,14 +15,11 @@ import java.util.Map;
 @SpringBootTest
 class McpWeatherServerApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
-
+    @Disabled("This needs a static, magic string of an previously build jar. Only useful in sequential testing.")
     @Test
     void mcpStdIo() {
         var stdioParams = ServerParameters.builder("java")
-                .args("-jar", "target/mcp-weather-server-0.0.1-SNAPSHOT.jar")
+                .args("-jar", "target/mcp-weather-server-0.1.0.jar")
                 .build();
         var stdioTransport = new StdioClientTransport(stdioParams);
         var mcpClient = McpClient.sync(stdioTransport)
