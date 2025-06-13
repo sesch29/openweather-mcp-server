@@ -1,15 +1,13 @@
 logging:
-  level:
-    root=OFF:
-  #  pattern:
-  #    console: "" # Must be blank, so MCP stdio doesn't get disturbed!
+  pattern:
+    console: # Must be blank, so MCP stdio doesn't get disturbed!
   file:
     name: ./target/server.log
 spring:
   profiles:
     active: dev
   application:
-    name: weather-mcp-server
+    name: openweather-mcp-server
   main:
     # NOTE: You must disable the banner and the console logging
     # to allow the STDIO transport to work !!!
@@ -18,5 +16,5 @@ spring:
   ai:
     mcp:
       server:
-        name: mcp-weather-server
-        version: 0.0.1
+        name: openweather-mcp-server
+        version: 0.1.1

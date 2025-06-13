@@ -11,13 +11,13 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
   this configuration:
     ```yml
     mcpServers:
-      mcp-weather-server:
+      openweather-mcp-server:
         type: stdio
         command: java
         args:
-          - -Dlogging.file.name="/app/my-mcp-servers/mcp-weather-server.log"
+          - -Dlogging.file.name="/app/my-mcp-servers/openweather-mcp-server.log"
           - -Dsecret.openweathermap.apikey=YOUR-OPENWEATHERMAP-API-KEY
-          - -jar /app/my-mcp-servers/mcp-weather-server-0.1.0.jar
+          - -jar /app/my-mcp-servers/openweather-mcp-server-0.1.0.jar
     ```
 - Download the *.jar file of the mcp-server
 - Copy it into a location that is reachable
@@ -49,7 +49,8 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
 - Now you can rebuild, restart. With the current versions it is sufficient to execute
   `docker compose build --no-cache && docker compose up -d`. On any problems, please stick
   to the [update guide](https://www.librechat.ai/docs/local/docker#update-librechat).
-- In your AI application, you should now be able to activate the "mcp-weather-server" and ask for the current weather in
+- In your AI application, you should now be able to activate the "openweather-mcp-server" and ask for the current
+  weather in
   any city :-)
 
 ## Development: Environment variables
