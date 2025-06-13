@@ -10,7 +10,7 @@
 
     <groupId>info.schefczyk.mcp</groupId>
     <artifactId>openweather-mcp-server</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0-SNAPSHOT</version>
     <name>mcp-weather-server</name>
     <description>A Java (Spring AI) implementation of an MCP server</description>
     <url>https://github.com/sesch29/openweather-mcp-server</url>
