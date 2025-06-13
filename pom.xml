@@ -29,7 +29,7 @@
     <scm>
         <connection>scm:git:https://github.com/sesch29/openweather-mcp-server.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sesch29/openweather-mcp-server.git</developerConnection>
-        <tag/>
+        <tag></tag>
         <url>https://github.com/sesch29/openweather-mcp-server</url>
     </scm>
 
