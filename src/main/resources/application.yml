@@ -1,18 +1,20 @@
 logging:
-  level:
-    org:
-      springframework: WARN
+  pattern:
+    console: # Must be blank, so MCP stdio doesn't get disturbed!
+  file:
+    name: ./target/server.log
 spring:
   profiles:
     active: dev
   application:
     name: weather-mcp-server
   main:
+    # NOTE: You must disable the banner and the console logging
+    # to allow the STDIO transport to work !!!
     banner-mode: off
+    web-application-type: none
   ai:
     mcp:
       server:
-        enabled: true
-        stdio: true
         name: mcp-weather-server
-
+        version: 0.0.1

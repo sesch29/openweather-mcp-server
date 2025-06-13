@@ -2,14 +2,10 @@ package info.schefczyk.mcp.mcp_weather_server;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 /**
  * Example Data in good response:
@@ -74,20 +70,6 @@ class WeatherServiceTest {
 
     @Autowired
     private WeatherService weatherService;
-
-    @Test
-    void testMockito() {
-        //mock creation
-        List mockedList = mock(List.class);
-
-        //using mock object
-        mockedList.add("one");
-        mockedList.clear();
-
-        //verification
-        verify(mockedList).add("one");
-        verify(mockedList).clear();
-    }
 
     @Test
     void happyFlow() {

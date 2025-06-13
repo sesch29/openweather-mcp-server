@@ -2,7 +2,8 @@ package info.schefczyk.mcp.mcp_weather_server;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +20,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class WeatherService {
 
-    @Value("${my.openweathermap.apikey}")
+    @Value("${secret.openweathermap.apikey}")
     private String apiKey;
     private final RestClient restClient;
+    private static final Logger logger = LoggerFactory.getLogger(WeatherService.class);
 
     public WeatherService() {
         restClient = RestClient.builder()
@@ -29,17 +31,12 @@ public class WeatherService {
                 .build();
     }
 
-    @PostConstruct
-    public void init() {
-        System.out.println("WeatherService.init: appId=" + apiKey);
-    }
-
     @Tool(description = "Get weather forecast for a specific latitude/longitude (format like '49.640556' and '8.278889')")
     public String getWeatherForecastByLocation(
             @ToolParam(description = "Latitude in form like '51.5073219'") String latitude,   // Latitude coordinate
             @ToolParam(description = "Longitude in form like '0.1276474'") String longitude   // Longitude coordinate
     ) {
-        System.out.println("WeatherService.getWeatherForecastByLocation: appId=" + apiKey);
+        logger.debug("getWeatherForecastByLocation: latitude={}, longitude={}", latitude, longitude);
         var uri = UriComponentsBuilder
                 .fromUriString("https://api.openweathermap.org/data/2.5/weather")
                 .queryParam("lat", latitude)
@@ -48,8 +45,6 @@ public class WeatherService {
                 .build()
                 .toUriString();
 
-        System.out.println("Computed URI: " + uri);
-
         var response = restClient
                 .get()
                 .uri(uri)
@@ -57,33 +52,34 @@ public class WeatherService {
                 .retrieve()
                 .toEntity(String.class);
 
-//        var response = restClient
-//                .get()
-//                .uri("https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={appId}", latitude, longitude, appId)
-//                .accept(APPLICATION_JSON)
-//                .retrieve()
-//                .toEntity(String.class);
-        System.out.println(response);
         return response.getBody();
     }
 
-    /**
-     * Coordinates by location name
-     */
-    @Tool(description = "Coordinates by location name. Use comma separation in scheme '{city name},{state code},{country code}'")
+    @Tool(description = "Get coordinates by location name. Use comma separation in scheme '{city name},{state code},{country code}'")
     public String getLocation(
-            @ToolParam(description = "Search string in scheme '{city name},{state code},{country code}'") String searchQuery
+            @ToolParam(description = "Search string in scheme '{city name},{state code},{country code}'. Limited to 1.") String searchQuery
     ) {
+        logger.debug("getLocation: searchQuery={}", searchQuery);
         var response = restClient
                 .get()
                 .uri("https://api.openweathermap.org/geo/1.0/direct?q={searchQuery}&limit=1&appid={appId}", searchQuery, apiKey)
                 .accept(APPLICATION_JSON)
                 .retrieve()
                 .toEntity(String.class);
-        System.out.println(response);
-        System.out.println(response.getBody());
         return response.getBody();
     }
 
-    // TODO more endpoints, see https://openweathermap.org/api/air-pollution
+    @Tool(description = "Search coordinates by location name. Use comma separation in scheme '{city name},{state code},{country code}'")
+    public String searchLocation(
+            @ToolParam(description = "Search string in scheme '{city name},{state code},{country code}'. Limited to 10.") String searchQuery
+    ) {
+        logger.debug("searchLocation: searchQuery={}", searchQuery);
+        var response = restClient
+                .get()
+                .uri("https://api.openweathermap.org/geo/1.0/direct?q={searchQuery}&limit=10&appid={appId}", searchQuery, apiKey)
+                .accept(APPLICATION_JSON)
+                .retrieve()
+                .toEntity(String.class);
+        return response.getBody();
+    }
 }

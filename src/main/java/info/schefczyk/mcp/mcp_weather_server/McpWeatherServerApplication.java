@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class McpWeatherServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(McpWeatherServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(McpWeatherServerApplication.class, args);
+    }
 
-	@Bean
-	public ToolCallbackProvider weatherTools(WeatherService weatherService) {
-		return MethodToolCallbackProvider
-				.builder()
-				.toolObjects(weatherService)
-				.build();
-	}
+    @Bean
+    public ToolCallbackProvider weatherTools(WeatherService weatherService) {
+        return MethodToolCallbackProvider
+                .builder()
+                .toolObjects(weatherService)
+                .build();
+    }
 }
