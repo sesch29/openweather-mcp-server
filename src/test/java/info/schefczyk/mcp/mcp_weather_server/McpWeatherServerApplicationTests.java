@@ -15,11 +15,11 @@ import java.util.Map;
 @SpringBootTest
 class McpWeatherServerApplicationTests {
 
-    @Disabled("This needs a static, magic string of an previously build jar. Only useful in sequential testing.")
+    @Disabled("This needs a static, magic string of a previously build jar. Only useful in sequential testing.")
     @Test
     void mcpStdIo() {
         var stdioParams = ServerParameters.builder("java")
-                .args("-jar", "target/mcp-weather-server-0.1.0.jar")
+                .args("-jar", "target/openweather-mcp-server-0.1.3-SNAPSHOT.jar")
                 .build();
         var stdioTransport = new StdioClientTransport(stdioParams);
         var mcpClient = McpClient.sync(stdioTransport)

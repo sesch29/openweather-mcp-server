@@ -12,7 +12,7 @@ public class SampleStdioCall {
 
     public static void main(String[] args) {
         var stdioParams = ServerParameters.builder("java")
-                .args("-jar", "target/mcp-weather-server-0.0.1-SNAPSHOT.jar")
+                .args("-jar", "target/openweather-mcp-server-0.1.3-SNAPSHOT.jar")
                 .build();
         var stdioTransport = new StdioClientTransport(stdioParams);
         var mcpClient = McpClient.sync(stdioTransport).build();

@@ -7,19 +7,20 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
 - Get your personal openweathermap.org API key:
     - Create an [Account](https://home.openweathermap.org/users/sign_up)
     - Create an API-key [here](https://home.openweathermap.org/api_keys)
-- Open the configuration file of your AI application. Depending on the app, this might be different. You need to add
-  this configuration:
-    ```yml
-    mcpServers:
-      mcp-weather-server:
-        type: stdio
-        command: java
-        args:
-          - -Dlogging.file.name="/app/my-mcp-servers/mcp-weather-server.log"
-          - -Dsecret.openweathermap.apikey=YOUR-OPENWEATHERMAP-API-KEY
-          - -jar /app/my-mcp-servers/mcp-weather-server-0.1.0.jar
-    ```
-- Download the *.jar file of the mcp-server
+        - Open the configuration file of your AI application. Depending on your app, this might be different. You need
+          to add
+          this data to your configuration (e.g. from `librechat.yaml`):
+            ```yml
+            mcpServers:
+              openweather-mcp-server:
+                type: stdio
+                command: java
+                args:
+                  - -jar 
+                  - /app/my-mcp-servers/openweather-mcp-server-0.1.2.jar
+                  - --spring.config.additional-location=file:/app/my-mcp-servers/application-prod.yml
+            ```
+- Download the *.jar file of the openweather-mcp-server
 - Copy it into a location that is reachable
     - LibreChat in Docker: create a folder `/LIBRECHAT/my-mcp-servers/`
 - Make sure, `java` is installed in the location
@@ -49,7 +50,8 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
 - Now you can rebuild, restart. With the current versions it is sufficient to execute
   `docker compose build --no-cache && docker compose up -d`. On any problems, please stick
   to the [update guide](https://www.librechat.ai/docs/local/docker#update-librechat).
-- In your AI application, you should now be able to activate the "mcp-weather-server" and ask for the current weather in
+- In your AI application, you should now be able to activate the "openweather-mcp-server" and ask for the current
+  weather in
   any city :-)
 
 ## Development: Environment variables

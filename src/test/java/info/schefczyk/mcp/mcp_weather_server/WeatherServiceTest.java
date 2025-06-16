@@ -72,13 +72,36 @@ class WeatherServiceTest {
     private WeatherService weatherService;
 
     @Test
-    void happyFlow() {
+    void getWeatherForecastByLocation_happyFlow() {
         // Arrange
         // Act
         String result = weatherService.getWeatherForecastByLocation("49.640556", "8.278889");
-
         // Assert
         assertNotNull(result);
         assertTrue(result.contains("Mörstadt"));
+    }
+
+    @Test
+    void getLocation_happyFlow() {
+        // Arrange
+        // Act
+        String result = weatherService.getLocation("Worms, Rhineland-Palatinate");
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.contains("Worms"));
+        assertTrue(result.contains("Wormacja"));
+        assertTrue(result.contains("\"state\":\"Rhineland-Palatinate\""));
+    }
+
+    @Test
+    void searchLocation_happyFlow() {
+        // Arrange
+        // Act
+        String result = weatherService.searchLocation("Worms");
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.contains("\"state\":\"Rhineland-Palatinate\""));
+        assertTrue(result.contains("\"state\":\"Nebraska\""));
+        assertTrue(result.contains("\"state\":\"Vorarlberg\""));
     }
 }
