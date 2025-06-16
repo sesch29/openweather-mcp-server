@@ -1,10 +1,10 @@
 logging:
   pattern:
-    #    console: # Must be blank, so MCP stdio doesn't get disturbed! Simplified & shut off.
-    console: "%msg%n"
+    console: # Must be blank, so MCP stdio doesn't get disturbed! Simplified & shut off.
+  #    console: "%msg%n" # Must be non-empty pattern
   #    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-  level:
-    root: OFF
+#  level:
+#    root: OFF
 spring:
   profiles:
     active: dev
@@ -19,4 +19,4 @@ spring:
     mcp:
       server:
         name: openweather-mcp-server
-        version: 0.1.2
+        version: 0.1.3
