@@ -1,0 +1,6 @@
+secret:
+  openweathermap:
+    apikey: your-api-key-1234
+logging:
+  file:
+    name: ./openweather-mcp-server.log

@@ -7,8 +7,8 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
 - Get your personal openweathermap.org API key:
     - Create an [Account](https://home.openweathermap.org/users/sign_up)
     - Create an API-key [here](https://home.openweathermap.org/api_keys)
-- Open the configuration file of your AI application. Depending on the app, this might be different. You need to add
-  this configuration:
+- Open the configuration file of your AI application. Depending on your app, this might be different. You need to add
+  this data to your configuration (e.g. from `librechat.yaml`):
     ```yml
     mcpServers:
       openweather-mcp-server:
@@ -17,7 +17,8 @@ If you just want to use it in your MCP-ready AI application of your choice, foll
         args:
           - -Dlogging.file.name="/app/my-mcp-servers/openweather-mcp-server.log"
           - -Dsecret.openweathermap.apikey=YOUR-OPENWEATHERMAP-API-KEY
-          - -jar /app/my-mcp-servers/openweather-mcp-server-0.1.0.jar
+          - -jar
+          - /app/my-mcp-servers/openweather-mcp-server-0.1.2.jar
     ```
 - Download the *.jar file of the mcp-server
 - Copy it into a location that is reachable
